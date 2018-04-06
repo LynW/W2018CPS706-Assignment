@@ -17,11 +17,14 @@ def hello_world():
 def hello():
     return render_template('index.html')
 
+
+
 @app.route('/hello2/')
 def hello2():
+
     UDP_IP = config.LOCAL_DNS_HOST
     UDP_PORT = config.LOCAL_DNS_PORT
-    MESSAGE = "Hello, World!"
+    MESSAGE = "Grabbing"
 
     print "UDP target IP:", UDP_IP
     print "UDP target port:", UDP_PORT
@@ -30,9 +33,26 @@ def hello2():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
 
-    data, addr = sock.recvfrom(1024)
-    return str(data)
+    data, addr = sock.recvfrom(1024) #Getting data
 
+    ip,port = str(data).split(':')
+
+    #Connecting to database through TCP connection
+    #TCP_IP = '127.0.0.1'
+    #TCP_PORT = 5005
+    BUFFER_SIZE = 1024
+    MESSAGE = "Please send me video file 1!"
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((ip, int(port)))
+    s.send(MESSAGE)
+
+
+
+
+    data = s.recv(BUFFER_SIZE)
+    s.close()
+    return str(data)
 
 if __name__ == "__main__":
     app.run()
