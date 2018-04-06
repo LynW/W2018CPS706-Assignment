@@ -10,4 +10,4 @@ Port No: 40040
 Using Python and Flask
 
 ## Running Application
-Run `python website.py``python Local_DNS.py` and `python db.py` on the command line. Open `index.html` while the three programs are running.
+Run `python website.py` `python Local_DNS.py` and `python db.py` on the command line. Open `index.html` while the three programs are running.
