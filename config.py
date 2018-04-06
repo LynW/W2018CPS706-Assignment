@@ -1,2 +1,4 @@
 LOCAL_DNS_HOST ='127.0.0.1'
 LOCAL_DNS_PORT = 40040
+hisCinema_PORT = 40044
+hisCinema_HOST ='127.0.0.1'
