@@ -56,7 +56,7 @@ def hello2():
         f.write(data)
         data = s.recv(BUFFER_SIZE)
     f.close()
-    return str('DOWNLOADING complete')
+    return str('DOWNLOADING complete') #Page loads this when done receiving file
 
 
     data = s.recv(BUFFER_SIZE)
