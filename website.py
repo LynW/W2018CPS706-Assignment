@@ -19,8 +19,8 @@ def hello():
 
 @app.route('/hello2/')
 def hello2():
-    UDP_IP = "127.0.0.1"
-    UDP_PORT = 40040
+    UDP_IP = config.LOCAL_DNS_HOST
+    UDP_PORT = config.LOCAL_DNS_PORT
     MESSAGE = "Hello, World!"
 
     print "UDP target IP:", UDP_IP
