@@ -41,13 +41,22 @@ def hello2():
     #TCP_IP = '127.0.0.1'
     #TCP_PORT = 5005
     BUFFER_SIZE = 1024
-    MESSAGE = "Please send me video file 1!"
+    MESSAGE = "Please send me video file 1"
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((ip, int(port)))
     s.send(MESSAGE)
 
+    f = open('client/downloaded1.mp4', 'wb')
+    data = s.recv(BUFFER_SIZE)
 
+    n = 1
+    while(data):
+        print "Receiving...", n+1
+        f.write(data)
+        data = s.recv(BUFFER_SIZE)
+    f.close()
+    return str('DOWNLOADING complete')
 
 
     data = s.recv(BUFFER_SIZE)

@@ -15,12 +15,12 @@ while True:
     conn, addr = s.accept()
     data = conn.recv(BUFFER_SIZE)
     print "Received data:", data
-    if not data:
-        f = open('database/video1.mp4', 'rb')
+    if data:
+        f = open('database/1.mp4', 'rb')
         l = f.read(1024)
         while (l):
-            conn.send(1)
+            conn.send(l)
             l = f.read(1024)
+        print "Done sending."
         f.close()
-        
-conn.close()
+        conn.close()
