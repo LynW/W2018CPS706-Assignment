@@ -18,7 +18,7 @@ while True:
     print "Received data:", data
 
     if data:
-        f = open('database/1.mp4', 'rb')
+        f = open('database/video1.mp4', 'rb')
         l = f.read(1024)
         while (l):
             conn.send(l)

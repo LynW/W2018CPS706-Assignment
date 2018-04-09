@@ -19,10 +19,10 @@ def not_found(error):
 
 @app.route('/download/<string:n>/')
 def download(num):
+    return  "download"
 
 
-    '''
-@app.route('/hello2/')
+@app.route('/video1/')
 def hello2():
 
     # --- Sending through UDP ---
@@ -59,7 +59,7 @@ def hello2():
     s.close()
     return str(data)
     # ------------------------------------------------------
-    '''
+
 
 if __name__ == "__main__":
     app.run()
