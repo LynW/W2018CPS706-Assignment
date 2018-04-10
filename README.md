@@ -10,4 +10,4 @@ Port No: 40040
 Using Python and Flask
 
 ## Running Application
-Run `python website.py` `python local_DNS.py` and `python db.py` on the command line. Open `index.html` while the three programs are running.
+Run `python hisCinema.py` `python local_DNS.py` and `python herDNS.py` on the command line. Open `http://127.0.0.1:5000` while the three programs are running.
