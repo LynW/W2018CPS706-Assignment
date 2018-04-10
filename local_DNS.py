@@ -11,7 +11,7 @@ sock.bind((UDP_IP, UDP_PORT))
 
 # --- Receiving file transfers Through UDP ----------
 while True:
-    data, address = sock.recvfrom(1024) # buffer size is 1024 bytes
+    data, address = sock.recvfrom(1024) 
     print "local_DNS received message:", data
 
     if data:
@@ -22,4 +22,4 @@ while True:
 
 
 
-#1. 
+#1.
