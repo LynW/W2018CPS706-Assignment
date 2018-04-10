@@ -17,11 +17,12 @@ def hello():
 def not_found(error):
     return render_template('error.html'), 404
 
-@app.route('/download/<string:n>/')
+@app.route('/video/<string:n>/')
 def download(num):
     return  "download"
 
 
+#We can do this the super inefficient way.
 @app.route('/video1/')
 def hello2():
 
