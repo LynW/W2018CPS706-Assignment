@@ -17,15 +17,18 @@ s.listen(1)
 while True:
     conn, addr = s.accept()
     data = conn.recv(BUFFER_SIZE)
-    print "Received data:", data
+    print "Received data from hisCinema containing message:", data
 
     if data:
         f = open('database/video1.mp4', 'rb')
+        print "Opening file."
         l = f.read(1024)
+        print "Starting to read."
         while (l):
             conn.send(l)
             l = f.read(1024)
-        print "Done sending."
+        print "Finished reading."
         f.close()
         conn.close()
+        print "Closing connection."
 # -----------------------------------
