@@ -62,7 +62,8 @@ def hello2():
         data = s.recv(BUFFER_SIZE)
     f.close()
     print "Done downloading."
-    return str('DOWNLOADING complete') #Page loads this when done receiving file
+    return render_template('complete.html')
+    #return str('DOWNLOADING complete') #Page loads this when done receiving file
     data = s.recv(BUFFER_SIZE)
     s.close()
     print "Closing socket."
