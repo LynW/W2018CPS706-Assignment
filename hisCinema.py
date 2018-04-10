@@ -20,7 +20,7 @@ def download(num):
     return  "download"
 
 
-#We can do this the super inefficient way.
+
 @app.route('/video1/')
 def hello2():
 
@@ -62,8 +62,8 @@ def hello2():
         data = s.recv(BUFFER_SIZE)
     f.close()
     print "Done downloading."
-    return render_template('complete.html')
-    #return str('DOWNLOADING complete') #Page loads this when done receiving file
+    return render_template('complete.html') # Goes to webpage when download completes
+
     data = s.recv(BUFFER_SIZE)
     s.close()
     print "Closing socket."
