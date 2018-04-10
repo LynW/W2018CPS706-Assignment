@@ -1,3 +1,5 @@
+#herCDNDNS only communicates with local_DNS
+
 import socket
 import config
 import time

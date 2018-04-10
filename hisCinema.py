@@ -1,4 +1,4 @@
-# PREVIOIUSLY website.py
+# Communicates with client
 
 from flask import Flask
 from flask import render_template

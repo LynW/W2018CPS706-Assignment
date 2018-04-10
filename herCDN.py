@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#herCDN sends the video to client
+
 import socket
 import config
 
