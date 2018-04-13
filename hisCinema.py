@@ -10,22 +10,24 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.bind((tcpip,tcpport))
 sock.listen(1)
 
-conn, addr = sock.accept()
-data = conn.recv(buffersize)
-print "Message received from address: ",addr,"saying: ",data
-
 while True:
-	print "Opening index.html..."
-	fil = open('templates/index.html', 'rb')
 
-	print "Reading index.html..."
-	line = fil.read(1024)
-	while (line):
-		conn.send(line)
+	conn, addr = sock.accept()
+	data = conn.recv(buffersize)
+	print "Message received from address: ",addr,"saying: ",data
+
+	if data:
+		print "Opening index.html..."
+		fil = open('templates/index.html', 'rb')
+
+		print "Reading index.html..."
 		line = fil.read(1024)
+		while (line):
+			conn.send(line)
+			line = fil.read(1024)
 
-	print "index.html sent."
+		print "index.html sent."
 
-	fil.close()
-	conn.close()
-	print "Connection Closed"
+		fil.close()
+		conn.close()
+		print "Connection Closed"

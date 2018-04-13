@@ -8,30 +8,37 @@ import socket
 import config
 from flask import Flask
 from flask import render_template
-
-# https://wiki.python.org/moin/TcpCommunication
-tcpip = config.hisCinema_HOST
-tcpport = config.hisCinema_PORT
-buffersize = 1024
-message = "Send hiscinema.com html file with video links"
-
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.connect((tcpip, tcpport));
-sock.send(message)
-print"Client requests videos.hiscinema.com from www.hiscinema.com web server at IP address: ",tcpip," and port: ",tcpport
-
-#hiscinema receives this request and sends over index.html
-data = sock.recv(buffersize)
-print "Receiving index.html..."
-sock.close()
-
-#displays index.html file on browser
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return str(data)
+	# https://wiki.python.org/moin/TcpCommunication
+	tcpip = config.hisCinema_HOST
+	tcpport = config.hisCinema_PORT
+	buffersize = 1024
+	message = "Send hiscinema.com html file with video links"
 
+	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	sock.connect((tcpip, tcpport));
+	sock.send(message)
+	print"Client requests videos.hiscinema.com from www.hiscinema.com web server at IP address: ",tcpip," and port: ",tcpport
+
+	#hiscinema receives this request and sends over index.html
+	data = sock.recv(buffersize)
+	print "Receiving index.html..."
+
+	fil = open('templates/vid.html', 'wb')
+	print "Opening file to write index.html into..."
+
+	while(data):
+	    fil.write(data)
+	    data = sock.recv(buffersize)
+	print "Writing into vid.html..."
+	return render_template('vid.html')
+	sock.close()
+	print "Connection closed."
+	#displays index.html file on browser
+	return str(data)
 if __name__ == "__main__":
     app.run()
 
