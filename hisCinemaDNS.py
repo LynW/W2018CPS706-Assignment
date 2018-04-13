@@ -1,7 +1,7 @@
 #hisCinemaDNS communicates with local_DNS with flags
 import socket
 import config
-
+import time
 udpip = config.LOCAL_DNS_HOST
 udpport = 40044 #port using for connection with hiscinemaDNS
 buffersize = 1024
@@ -38,4 +38,4 @@ print "Found video URL IP is in herCDNDNS in record: INSERT RECORD"
 #hisCinemaDNS responds with herCDNDNS ip address NS type
 message = "go to herCDNDNS"
 sock.sendto(message, (udpip, udpport))
-print "Sent herCDNDNS IP to localDNS"
+print "Sent herCDNDNS IP to localDNS at udpip: ", udpip, "udpport: ", udpport

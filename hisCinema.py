@@ -1,6 +1,6 @@
 import config
 import socket 
-
+import time
 #tcp connection established with client to sen index file
 tcpip = config.hisCinema_HOST
 tcpport = config.hisCinema_PORT

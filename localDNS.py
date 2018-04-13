@@ -1,6 +1,6 @@
 import socket
 import config
-
+import time
 #receiving message from client asking for IP address of a video
 
 udpip = config.LOCAL_DNS_HOST
@@ -43,7 +43,7 @@ udpport = 40044 #port using for connection with hiscinemaDNS
 sock.sendto(vidnum,(udpip, udpport))
 print "Sent request to hiscinemaDNS asking for video number: ",vidnum, "to address: ", udpip, ", ", udpport
 
-data, addr = sock.recv(buffersize)
+data, addr = sock.recvfrom(buffersize)
 print "Received message from hisCinemaDNS saying: ", data
 
 # Step 4: localDNS contacts herCDNDNS for IP of video.hiscinema.com which herCDNDNS returns to localDNS
@@ -51,7 +51,7 @@ udpport = 40043 #port using for connection with herCDNDNS
 sock.sendto(vidnum,(udpip, udpport))
 print "Sent request to herCDNDNS asking for video number: ",vidnum, "to address: ", udpip, ", ", udpport
 
-data, addr = sock.recv(buffersize)
+data, addr = sock.recvfrom(buffersize)
 #PARSE RECORD RECEIVED HERE AND GET IP ADDRESS OF HERCDN.COM
 ipher = "127.0.0.1,40042"
 #tcpip,tcpport = str(data).split(':')

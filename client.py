@@ -6,6 +6,7 @@
 # Step 1: client to do all the opening, gets everything, tcp conenction with hiscinema sends index file, client displays it 
 import socket
 import config
+import time
 from flask import Flask
 from flask import render_template
 app = Flask(__name__)
@@ -51,8 +52,10 @@ def vid(num):
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 	sock.sendto(message, (udpip, udpport))
 	print "Requesting IP address for video/",num, "/ from localDNS at UDP IP: ",udpip," and UDP PORT: ",udpport
-	
-	data, addr = sock.recvfrom(1024) #Getting data
+
+	while True:
+		data,addr = sock.recvfrom(1024) #Getting data
+		break;
 	ip,port = str(data).split(',')
 	message = str(num) #This message will be sent to herCDN
     #have video variable with 1,2, or 3 and that gets evaluated when looking to see which video file to send? 

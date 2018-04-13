@@ -2,7 +2,7 @@
 
 import socket
 import config
-import re
+import time
 
 udpip = config.LOCAL_DNS_HOST
 udpport = 40043 #port using for connection with herCDNDNS
@@ -20,10 +20,10 @@ print "Received request asking for video number: ",vidnum, "from address: ", add
 #I want to search each tuple in records.txt then split it into three parts (name, value, type) delimited by comma
 # records are found in config.py
 # IP and PORT aren't split
-for items in config.datafile:
-  if addr in items:
-    address =  (items[1]) # [1] ip address field in tuple
-print "Found", (address), "in", items
+#for items in config.datafile:
+  #if addr in items:
+    #address =  (items[1]) # [1] ip address field in tuple
+#print "Found", (address), "in", items
 
 # uncomment below if PORT was included
 '''
