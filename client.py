@@ -1,9 +1,9 @@
 # Client receives data from herCDN
 # Communicates with hisCinema
 # 2 on the diagram (IDK what that does)
-#questions: 
+#questions:
 	#when to use V or R flag?
-# Step 1: client to do all the opening, gets everything, tcp conenction with hiscinema sends index file, client displays it 
+# Step 1: client to do all the opening, gets everything, tcp conenction with hiscinema sends index file, client displays it
 import socket
 import config
 import time
@@ -48,6 +48,7 @@ def vid(num):
 	print "Video number: ", num, "clicked."
 	udpip = config.LOCAL_DNS_HOST
 	udpport = config.LOCAL_DNS_PORT
+	BUFFER_SIZE = 1024
 	message = str(num)
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 	sock.sendto(message, (udpip, udpport))
@@ -56,9 +57,9 @@ def vid(num):
 	while True:
 		data,addr = sock.recvfrom(1024) #Getting data
 		break;
-	ip,port = str(data).split(',')
+	ip,port = str(data).split(':')
 	message = str(num) #This message will be sent to herCDN
-    #have video variable with 1,2, or 3 and that gets evaluated when looking to see which video file to send? 
+    #have video variable with 1,2, or 3 and that gets evaluated when looking to see which video file to send?
 
 	# Step 6: client establishes TCP connection with herCDN and requests video number: 1
 	tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -66,10 +67,10 @@ def vid(num):
 	print "Connecting to TCP PORT:", ip, ", TCP PORT:", int(port)
 
 	tcpsock.send(message)
-	print "Sending message to herCDN asking for video number: .", num, "to be sent." 
+	print "Sending message to herCDN asking for video number: .", num, "to be sent."
 
-	#waiting for file 
-	fil = open('client/downloaded',num,".mp4", 'wb')
+	#waiting for file
+	fil = open('client/downloaded'+num+".mp4", 'wb')
 	print "Opening file to store video in client..."
 
 	data = tcpsock.recv(BUFFER_SIZE)
@@ -94,6 +95,6 @@ if __name__ == "__main__":
 
 # Step 3: (in localDNS) localDNS then request for video.hiscinema.com IP from hiscinemaDNS, hisCinemaDNS responds with herCDNDNS ip address NS type
 # Step 4: (in localDNS) localDNS contacts herCDNDNS for IP of video.hiscinema.com which herCDNDNS returns to localDNS
-# Step 5: (in localDNS and client) localDNS then passes IP onto client 
+# Step 5: (in localDNS and client) localDNS then passes IP onto client
 # Step 6: client establishes TCP connection with herCDN and requests video number: 1
-# Step 7: hercinema receives request and sends video file over TCP, which downloads onto client and then plays. 
+# Step 7: hercinema receives request and sends video file over TCP, which downloads onto client and then plays.

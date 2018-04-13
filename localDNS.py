@@ -15,7 +15,7 @@ while True:
 
     if vidnum:
         print "vidnum has been resolved at address: ", addr
-        sock.sendto(b'127.0.0.1:40041', address)
+        sock.sendto(b'127.0.0.1:40041', addr)
 #SEARCHES DIRECTORY OF RECORDS FOR THAT RECORD FIND IP ADDRESS IS IN HISCINEMADNS
 #I want to search each tuple in records.txt then split it into three parts (name, value, type) delimited by comma
 # records are found in config.py
