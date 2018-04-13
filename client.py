@@ -33,6 +33,7 @@ def index():
 	while(data):
 	    fil.write(data)
 	    data = sock.recv(buffersize)
+	fil.close()
 	print "Writing into vid.html..."
 	return render_template('vid.html')
 	sock.close()
