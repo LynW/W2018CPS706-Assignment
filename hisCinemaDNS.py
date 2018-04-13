@@ -22,7 +22,7 @@ for items in config.datafile:
 print "Found", (address), "in", items
 
 # uncomment below if PORT was included
-    '''
+'''
 # split IP and PORT
 for items in config.datafile:
   if addr in items:

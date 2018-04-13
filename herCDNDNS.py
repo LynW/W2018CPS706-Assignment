@@ -26,7 +26,7 @@ for items in config.datafile:
 print "Found", (address), "in", items
 
 # uncomment below if PORT was included
-    '''
+'''
 # split IP and PORT
 for items in config.datafile:
   if addr in items:
@@ -40,7 +40,7 @@ print ("IP:",this_ip, "and PORT:", this_port)
 print "Found record:"
 
 # Should this be: record = str(this_ip:this_port) ?
-record = str(configure.herCinema_HOST:configure.herCinema_PORT)
+record = "The record containing that video is in here"
 #herCDNDNS responds with record A type
 sock.sendto(record, (udpip, udpport))
 print "Sent record to localDNS"

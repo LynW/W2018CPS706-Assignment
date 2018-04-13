@@ -60,6 +60,6 @@ if __name__ == "__main__":
 
 # Step 3: (in localDNS) localDNS then request for video.hiscinema.com IP from hiscinemaDNS, hisCinemaDNS responds with herCDNDNS ip address NS type
 # Step 4: (in localDNS) localDNS contacts herCDNDNS for IP of video.hiscinema.com which herCDNDNS returns to localDNS
-# Step 5: localDNS then passes IP onto client 
+# Step 5: (in localDNS and client) localDNS then passes IP onto client 
 # Step 6: client establishes TCP connection with herCDN and requests video number: 1
 # Step 7: hercinema receives request and sends video file over TCP, which downloads onto client and then plays. 

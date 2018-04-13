@@ -23,7 +23,7 @@ for items in config.datafile:
 print "Found", (address), "in", items
 
 # uncomment below if PORT was included
-    '''
+'''
 # split IP and PORT
 for items in config.datafile:
   if addr in items:
@@ -52,7 +52,11 @@ sock.sendto(vidnum,(udpip, udpport))
 print "Sent request asking for video number: ",vidnum, "to address: ", udpip, ", ", udpport
 
 data, addr = sock.recv(buffersize)
-tcpip,tcpport = str(data).split(':')
+#PARSE RECORD RECEIVED HERE AND GET IP ADDRESS OF HERCDN.COM
+ipher = "127.0.0.1,40042"
+#tcpip,tcpport = str(data).split(':')
 print "Received message from herCDNDNS with record, resolved IP for video number: ", vidnum
 
 # Step 5: (in localDNS and client) localDNS then passes IP onto client
+
+
