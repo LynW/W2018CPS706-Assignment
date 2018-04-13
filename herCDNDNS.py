@@ -2,24 +2,22 @@
 
 import socket
 import config
-import time
 
-UDP_IP = config.herCinema_HOST
-UDP_PORT = config.herCinema_PORT
-MESSAGE = "{127.0.0.1,A}"
+udpip = config.LOCAL_DNS_HOST
+udpport = 40042 #port using for connection with herCDNDNS
+buffersize = 1024
 
+#FORMAT OF RECORDS >>>>>>>> MESSAGE = "{127.0.0.1,A}"
 
-# --- https://wiki.python.org/moin/UdpCommunication
-sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) # UDP
-sock.bind((UDP_IP, UDP_PORT))
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind((udpip, udpport))
 
-while True:
-    data, addr = sock.recvfrom(1024)
-    print "received message:", data
-    if not data: break
-    sock.sendto(MESSAGE, addr)
-    sock.close()
+vidnum, addr = sock.recvfrom(buffersize) 
+print "Received request asking for video number: ",vidnum, "from address: ", addr
 
-
-
-#I don't know how to check if this works
+#SEARCHES DIRECTORY OF RECORDS FOR THAT VIDEO, FINDS IT AND SENDS IT TO LOCALDNS
+print "Found record: INSERT RECORD"
+record = str(configure.herCinema_HOST:configure.herCinema_PORT)
+#herCDNDNS responds with record A type
+sock.sendto(record, (udpip, udpport))
+print "Sent record to localDNS"
