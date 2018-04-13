@@ -17,10 +17,10 @@ print "Received request asking for video number: ",vidnum, "from address: ", add
 #I want to search each tuple in records.txt then split it into three parts (name, value, type) delimited by comma
 # records are found in config.py
 # IP and PORT aren't split
-for items in config.datafile:
-  if addr in items:
-    address =  (items[1]) # [1] ip address field in tuple
-print "Found", (address), "in", items
+#for items in config.datafile:
+  #if addr in items:
+    #address =  (items[1]) # [1] ip address field in tuple
+#print "Found", (address), "in", items
 
 # uncomment below if PORT was included
 '''
@@ -58,5 +58,9 @@ ipher = "127.0.0.1,40042"
 print "Received message from herCDNDNS with record, resolved IP for video number: ", vidnum
 
 # Step 5: (in localDNS and client) localDNS then passes IP onto client
+udpport = config.LOCAL_DNS_PORT
+sock.sendto(ipher, (udpip, udpport))
+print "Sent IP address of herCDN to client"
+
 
 

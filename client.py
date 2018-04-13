@@ -52,7 +52,38 @@ def vid(num):
 	sock.sendto(message, (udpip, udpport))
 	print "Requesting IP address for video/",num, "/ from localDNS at UDP IP: ",udpip," and UDP PORT: ",udpport
 	
-	return
+	data, addr = sock.recvfrom(1024) #Getting data
+	ip,port = str(data).split(',')
+	message = str(num) #This message will be sent to herCDN
+    #have video variable with 1,2, or 3 and that gets evaluated when looking to see which video file to send? 
+
+	# Step 6: client establishes TCP connection with herCDN and requests video number: 1
+	tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	tcpsock.connect((ip, int(port)))
+	print "Connecting to TCP PORT:", ip, ", TCP PORT:", int(port)
+
+	tcpsock.send(message)
+	print "Sending message to herCDN asking for video number: .", num, "to be sent." 
+
+	#waiting for file 
+	fil = open('client/downloaded',num,".mp4", 'wb')
+	print "Opening file to store video in client..."
+
+	data = tcpsock.recv(BUFFER_SIZE)
+	print "Receiving video file..."
+	#print "data is: " + data
+
+	while(data):
+		fil.write(data)
+		data = tcpsock.recv(BUFFER_SIZE)
+	fil.close()
+	print "Done downloading."
+	return render_template('complete.html')
+	#return str('DOWNLOADING complete') #Page loads this when done receiving file
+	data = tcpsock.recv(BUFFER_SIZE)
+	tcpsock.close()
+	print "Closing socket."
+	return str(data)
 
 if __name__ == "__main__":
     app.run()
