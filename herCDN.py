@@ -37,5 +37,5 @@ while True:
         fil.close()
         conn.close()
         print "Closing connection."
-        sock.close()
+sock.close()
 # -----------------------------------

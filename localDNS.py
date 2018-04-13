@@ -9,10 +9,13 @@ buffersize = 1024
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((udpip, udpport))
+while True:
+    vidnum, addr = sock.recvfrom(buffersize)
+    print "Received request asking for video number: ",vidnum, "from address: ", addr
 
-vidnum, addr = sock.recvfrom(buffersize)
-print "Received request asking for video number: ",vidnum, "from address: ", addr
-
+    if vidnum:
+        print "vidnum has been resolved at address: ", addr
+        sock.sendto(b'127.0.0.1:40041', address)
 #SEARCHES DIRECTORY OF RECORDS FOR THAT RECORD FIND IP ADDRESS IS IN HISCINEMADNS
 #I want to search each tuple in records.txt then split it into three parts (name, value, type) delimited by comma
 # records are found in config.py
@@ -33,7 +36,7 @@ this_ip = splitter[0]
 this_port = splitter[1]
 print ("IP:",this_ip, "and PORT:", this_port)
     '''
-    
+
 
 print "Found video URL IP is in hisCinemaDNS in record: INSERT RECORD"
 
@@ -62,5 +65,4 @@ udpport = config.LOCAL_DNS_PORT
 sock.sendto(ipher, (udpip, udpport))
 print "Sent IP address of herCDN to client"
 
-
-
+sock.close()

@@ -1,5 +1,5 @@
 # local_DNS communicates with
-#1. Client 
+#1. Client
 #2. hisCinemaDNS
 #3. herCinemaDNS
 
@@ -25,3 +25,4 @@ while True:
         print "Resolved the DNS query"
         sock.sendto(b'127.0.0.1:40049', address) #TCP_PORT
 # --------------------------------------------------
+sock.close()

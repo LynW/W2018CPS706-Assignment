@@ -13,8 +13,13 @@ buffersize = 1024
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((udpip, udpport))
 
-vidnum, addr = sock.recvfrom(buffersize)
-print "Received request asking for video number: ",vidnum, "from address: ", addr
+while True:
+    vidnum, addr = sock.recvfrom(buffersize)
+    print "Received request asking for video number: ",vidnum, "from address: ", addr
+
+    if vidnum:
+        print "vidnum has been resolved at address: ", addr
+        sock.sendto(b'127.0.0.1:40041', address)
 
 #SEARCHES DIRECTORY OF RECORDS FOR THAT VIDEO, FINDS IT AND SENDS IT TO LOCALDNS
 #I want to search each tuple in records.txt then split it into three parts (name, value, type) delimited by comma
@@ -44,3 +49,4 @@ record = "The record containing that video is in here"
 #herCDNDNS responds with record A type
 sock.sendto(record, (udpip, udpport))
 print "Sent record to localDNS"
+sock.close()

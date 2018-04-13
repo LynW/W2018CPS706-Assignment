@@ -1,5 +1,5 @@
 import config
-import socket 
+import socket
 import time
 #tcp connection established with client to sen index file
 tcpip = config.hisCinema_HOST
@@ -31,3 +31,4 @@ while True:
 		fil.close()
 		conn.close()
 		print "Connection Closed"
+sock.close()
