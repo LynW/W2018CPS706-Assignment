@@ -20,7 +20,7 @@ def download(num):
     return  "download"
 
 
-
+    '''
 @app.route('/video1/')
 def hello2():
 
@@ -69,7 +69,7 @@ def hello2():
     print "Closing socket."
     return str(data)
     # ------------------------------------------------------
-
+    '''
 
 if __name__ == "__main__":
     app.run()
