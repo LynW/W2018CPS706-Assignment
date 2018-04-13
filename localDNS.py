@@ -1,5 +1,5 @@
 import socket
-import config 
+import config
 
 #receiving message from client asking for IP address of a video
 
@@ -10,10 +10,31 @@ buffersize = 1024
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.bind((udpip, udpport))
 
-vidnum, addr = sock.recvfrom(buffersize) 
+vidnum, addr = sock.recvfrom(buffersize)
 print "Received request asking for video number: ",vidnum, "from address: ", addr
 
 #SEARCHES DIRECTORY OF RECORDS FOR THAT RECORD FIND IP ADDRESS IS IN HISCINEMADNS
+#I want to search each tuple in records.txt then split it into three parts (name, value, type) delimited by comma
+# records are found in config.py
+# IP and PORT aren't split
+for items in config.datafile:
+  if addr in items:
+    address =  (items[1]) # [1] ip address field in tuple
+print "Found", (address), "in", items
+
+# uncomment below if PORT was included
+    '''
+# split IP and PORT
+for items in config.datafile:
+  if addr in items:
+    address =  (items[1]) # [1] ip address field in tuple
+    splitter = (address.split(":"))
+this_ip = splitter[0]
+this_port = splitter[1]
+print ("IP:",this_ip, "and PORT:", this_port)
+    '''
+    
+
 print "Found video URL IP is in hisCinemaDNS in record: INSERT RECORD"
 
 #forwards request to hiscinemaDNS
@@ -34,5 +55,4 @@ data, addr = sock.recv(buffersize)
 tcpip,tcpport = str(data).split(':')
 print "Received message from herCDNDNS with record, resolved IP for video number: ", vidnum
 
-# Step 5: (in localDNS and client) localDNS then passes IP onto client 
-
+# Step 5: (in localDNS and client) localDNS then passes IP onto client
