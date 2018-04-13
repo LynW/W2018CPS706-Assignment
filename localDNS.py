@@ -39,17 +39,17 @@ print "Found video URL IP is in hisCinemaDNS in record: INSERT RECORD"
 
 #forwards request to hiscinemaDNS
 # Step 3: localDNS then request for video.hiscinema.com IP from hiscinemaDNS, (in hiscinemaDNS)hisCinemaDNS responds with herCDNDNS ip address NS type
-udpport = 40041 #port using for connection with hiscinemaDNS
+udpport = 40044 #port using for connection with hiscinemaDNS
 sock.sendto(vidnum,(udpip, udpport))
-print "Sent request asking for video number: ",vidnum, "to address: ", udpip, ", ", udpport
+print "Sent request to hiscinemaDNS asking for video number: ",vidnum, "to address: ", udpip, ", ", udpport
 
 data, addr = sock.recv(buffersize)
 print "Received message from hisCinemaDNS saying: ", data
 
 # Step 4: localDNS contacts herCDNDNS for IP of video.hiscinema.com which herCDNDNS returns to localDNS
-udpport = 40042 #port using for connection with herCDNDNS
+udpport = 40043 #port using for connection with herCDNDNS
 sock.sendto(vidnum,(udpip, udpport))
-print "Sent request asking for video number: ",vidnum, "to address: ", udpip, ", ", udpport
+print "Sent request to herCDNDNS asking for video number: ",vidnum, "to address: ", udpip, ", ", udpport
 
 data, addr = sock.recv(buffersize)
 #PARSE RECORD RECEIVED HERE AND GET IP ADDRESS OF HERCDN.COM

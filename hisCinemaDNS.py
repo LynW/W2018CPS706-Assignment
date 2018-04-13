@@ -3,7 +3,7 @@ import socket
 import config
 
 udpip = config.LOCAL_DNS_HOST
-udpport = 40041 #port using for connection with hiscinemaDNS
+udpport = 40044 #port using for connection with hiscinemaDNS
 buffersize = 1024
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

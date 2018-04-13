@@ -5,7 +5,7 @@ import config
 import re
 
 udpip = config.LOCAL_DNS_HOST
-udpport = 40042 #port using for connection with herCDNDNS
+udpport = 40043 #port using for connection with herCDNDNS
 buffersize = 1024
 
 #FORMAT OF RECORDS >>>>>>>> MESSAGE = "{127.0.0.1,A}"
